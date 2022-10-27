@@ -11,7 +11,7 @@
   		<table class='table'>
   		  <tr>
           <td><%= link_to(@book.user) do %>
-            <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
+            <%= image_tag @book.user.get_profile_image, size:"50x50" %><br>
             <%= @book.user.name %>
             <% end %>
           </td>
@@ -35,12 +35,34 @@
             <% end %>
           </td>
 
-          <% if @book.user_id == current_user.id %>
+         <td>
+            <p>コメント数:<%= @book.book_comments.count %></p>
+         </td>
+
+         <% if @book.user_id == current_user.id %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-        　<% end %>
+          <% end %>
         </tr>
       </table>
+
+         <table>
+           <tbody>
+            <% @book.book_comments.each do |book_comment| %>
+              <p><%= image_tag book_comment.user.get_profile_image, size:"50x50" %><%= book_comment.comment %>
+              <% if book_comment.user == current_user %>
+               <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-danger btn-sm" %>
+              <% end %>
+              <p><%= link_to book_comment.user.name,user_path(book_comment.user) %>
+            <% end %>
+            </tbody>
+         </table>
+         <div>
+            <%= form_with model: [@book, @book_comment] do |f| %>
+             <%= f.text_area :comment, size:"80x5" %>
+             <%= f.submit "送信" %>
+            <% end %>
+         </div>
     </div>
   </div>
 </div>
