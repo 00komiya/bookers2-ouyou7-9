@@ -32,4 +32,18 @@ class User < ApplicationRecord
     reverse_of_relationships.find_by(followed_id: user.id).present?
   end
 
+  # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match" # 完全一致
+      @user = User.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"  # 前方一致のため後ろに%
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match" # 後方一致のため前に%
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial_match" # 部分一致のため前後に%
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
  end
