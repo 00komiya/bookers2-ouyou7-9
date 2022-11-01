@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'home/about' => 'homes#about', as: 'about'
 
+  # 検索ボタンが押された時にsearchesコントローラーのsearchアクションが実行される
+  get 'search' => 'searchs#search'
+
   resources :users do
    resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
