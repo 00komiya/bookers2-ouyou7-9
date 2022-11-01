@@ -27,7 +27,7 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
-  # (user)←この引数に渡されたユーザーにフォローされているか否か
+  # (user)←この引数に渡されたユーザーにフォローされているか否かのアクション
   def followed_by?(user)
     reverse_of_relationships.find_by(followed_id: user.id).present?
   end
