@@ -33,6 +33,19 @@ class UsersController < ApplicationController
    end
   end
 
+  # このユーザーがフォローしている人全員を取得するアクション
+  def follows
+    user = User.find(params[:id])
+    @users = user.follows
+  end
+
+  # このユーザーをフォローしている全員を取得するアクション
+  def wollowers
+    user = User.find(params[:id])
+    @users = user.followers
+  end
+
+
   private
 
   def user_params
