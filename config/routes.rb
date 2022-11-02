@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'home/about' => 'homes#about', as: 'about'
 
   # 検索ボタンが押された時にsearchesコントローラーのsearchアクションが実行される
-  get 'search' => 'searchs#search'
+  get 'search' => 'searches#search'
 
   resources :users do
    resource :relationships, only: [:create, :destroy]
