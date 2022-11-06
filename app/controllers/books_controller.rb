@@ -11,6 +11,9 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    to =  Time.current.at_beginning_of_day
+    from = (to - 6.day).at_end_of_day
+    @ranks = Book.joins(:favorites).where(favorites: { created_at: from...to}).group(:id).order(Arel.sql("count(*) desc"))
     @book = Book.new
     @user = current_user
   end
