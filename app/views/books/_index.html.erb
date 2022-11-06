@@ -16,15 +16,10 @@
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
-       <td>
-          <td id="favorite_buttons_<%= book.id %>">
-　　　     <%= render "favorites/favorite", book: book %>
-          </td>
-
-      <td>
-        <p><%= link_to "コメント数: #{book.book_comments.count}", book_path(book.id) %></p>
-      </td>
-
+        <td><%= link_to "コメント数: #{book.book_comments.count}", book_path(book.id) %></td>
+          <td><div id="favorite_btn_<%= book.id %>">
+            <%= render 'favorites/favorite', book: book %>
+          </div></td>
       </tr>
     <% end %>
   </tbody>
