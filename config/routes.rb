@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chats/show'
   get 'relationships/followings'
   get 'relationships/followers'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -8,6 +9,9 @@ Rails.application.routes.draw do
 
   # 検索ボタンが押された時にsearchesコントローラーのsearchアクションが実行される
   get 'search' => 'searches#search'
+
+
+  resources :chats, only: [:show, :create]
 
   resources :users do
    resource :relationships, only: [:create, :destroy]
