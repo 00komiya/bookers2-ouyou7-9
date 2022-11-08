@@ -40,4 +40,9 @@
         <% end %>
       </div>
     <% end %>
+    <div>
+      <% if current_user != user && current_user.followed_by?(user) && user.followed_by?(current_user) %>
+      <%= link_to 'chatを始める', chat_path(@user.id), class: "ml-3" %>
+      <% end %>
+    </div>
   </div>
