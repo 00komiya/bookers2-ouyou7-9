@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   # このユーザーをフォローしている全員を取得するアクション
-  def wollowers
+  def followers
     user = User.find(params[:id])
     @users = user.followers
   end
