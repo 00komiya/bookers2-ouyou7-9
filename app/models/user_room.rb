@@ -1,6 +1,6 @@
 class UserRoom < ApplicationRecord
 
-  has_many :user_rooms
-  has_many :chats
+  belongs_to :user
+  belongs_to :room
 
 end

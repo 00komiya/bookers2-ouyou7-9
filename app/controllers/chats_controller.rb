@@ -33,7 +33,7 @@ class ChatsController < ApplicationController
   # フォローしている人限定でDMを送ることができる
   def reject_non_related
       user = User.find(params[:id])
-      unless current_user.follows?(user) && user.follows?(current_user)
+      unless current_user.followed_by?(user) && user.followed_by?(current_user)
         redirect_to books_path # 現在のユーザー（私）がフォローしていて且つ取り出したユーザーが私をフォローしていなかったらbooks_path
       end
   end
