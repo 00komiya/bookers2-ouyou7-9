@@ -21,7 +21,7 @@
             <%= render 'favorites/favorite', book: @book %>
           </div></td>
           <td>コメント数: <%= @book.book_comments.count %></td>
-          <td><p class="view-count">👀数: <%= @book_detail.view_counts.count %></p></td>
+          <td><i class="far fa-eye"></i><%= @book.impressionist_count %></td>
             <% if @book.user_id == current_user.id %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
